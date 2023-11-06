@@ -14,6 +14,7 @@ dependencies {
     testImplementation(kotlin("test"))
     testImplementation("io.cucumber:cucumber-java:7.14.0")
     testImplementation("io.cucumber:cucumber-junit:7.14.0")
+    testImplementation("io.appium:java-client:9.0.0")
 }
 
 tasks.test {
