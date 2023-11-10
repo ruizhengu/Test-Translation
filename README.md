@@ -8,9 +8,9 @@
 
 ## Drivers
 
-The drivers mapping the WebDriver protocol to the underlying APIs.
+1. The drivers mapping the WebDriver protocol to the underlying APIs.
 
-#### 
+2. **All languages will be translated into the same REST API calls.**
 
 #### Locator - XPATH
 
@@ -44,6 +44,16 @@ el = self.driver.find_element(by=AppiumBy.ANDROID_UIAUTOMATOR, value="text(\"Bat
 ......
 
 [AndroidUiautomator2Driver@84b1 (f947d479)] Proxying [POST /element] to [POST http://127.0.0.1:8201/session/33a13a14-eaaf-48cd-8ccf-3b35f7ede44a/element] with body: {"strategy":"-android uiautomator","selector":"text(\"Battery\")","context":"","multiple":false}
+```
+
+```sh
+# click action
+[AndroidUiautomator2Driver@e4ff (ab5f39dc)] Calling AppiumDriver.click() with args: ["00000000-0000-0082-0000-000300000004","ab5f39dc-6efb-431f-a0fa-e33a1586a253"]
+[AndroidUiautomator2Driver@e4ff (ab5f39dc)] Matched '/element/00000000-0000-0082-0000-000300000004/click' to command name 'click'
+[AndroidUiautomator2Driver@e4ff (ab5f39dc)] Proxying [POST /element/00000000-0000-0082-0000-000300000004/click] to [POST http://127.0.0.1:8200/session/1e78cd56-cea9-4b22-afb2-aee4987fd94d/element/00000000-0000-0082-0000-000300000004/click] with body: {"element":"00000000-0000-0082-0000-000300000004"}
+[AndroidUiautomator2Driver@e4ff (ab5f39dc)] Got response with status 200: {"sessionId":"1e78cd56-cea9-4b22-afb2-aee4987fd94d","value":null}
+[AndroidUiautomator2Driver@e4ff (ab5f39dc)] Responding to client with driver.click() result: null
+[HTTP] <-- POST /session/ab5f39dc-6efb-431f-a0fa-e33a1586a253/element/00000000-0000-0082-0000-000300000004/click 200 655 ms - 14
 ```
 
 ### Appium Espresso Drivers
