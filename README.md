@@ -64,3 +64,91 @@ el = self.driver.find_element(by=AppiumBy.ANDROID_UIAUTOMATOR, value="text(\"Bat
 ## Idea
 
 * No matter what kind of locator each action is using, we should always translate it by a strategy that can maximise the quality of test code (e.g. fewer test LOCs, lesser execution time).
+
+# ChatGPT Translation
+
+## Case 1
+
+Appium Python Test Code (XPATH locator) to Espresso Kotlin Test Code
+
+* Prompt
+
+  *translate this Appium call to UI Automator test code in Kotlin* 
+
+* Original Appium Python Test Code
+
+```python
+el = self.driver.find_element(by=AppiumBy.XPATH, value='//*[@text="Hello Android!"]')
+```
+
+* Translated Espresso Kotlin Test Code
+
+```kotlin
+onView(withText("Hello Android!")).perform(click())
+```
+
+* Results
+
+  The test case can pass, but the generated code is not equivalent. The original code does not contain **click** action.
+
+## Case 2
+
+AppiumDriver API call to UI Automator Kotlin Test code
+
+* Prompt
+
+  *Translate this Appium test code to UI Automator or Espresso in Kotlin. If the test code does not involve cross-application interactions, translate it to Espresso, otherwise, translate it to UI Automator.*
+
+* Original AppiumDriver API Call
+
+  ```shell
+  [AndroidUiautomator2Driver@5be1 (63a9e4f8)] Calling AppiumDriver.findElement() with args: ["xpath","//*[@text=\"Hello Android!\"]","63a9e4f8-125d-4822-8532-2a3136b4fb83"]
+  ```
+
+* Translated UI Automator Test Code
+
+  ```kotlin
+  val uiDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation())
+  
+  // Using UiSelector to find an element by text containing "Hello Android!"
+  val element = uiDevice.findObject(UiSelector().textContains("Hello Android!"))
+  
+  // Perform actions on the found element
+  element.click()
+  ```
+
+* Results
+
+  ChatGPT generates code in both UI Automator and Espresso.
+
+  The test can pass, but the generated code is not equivalent. The original locator is **text** while the translated one is **textContains**.
+
+## Case 3
+
+AppiumDriver API call to UI Automator Kotlin Test code using **By** selector
+
+* Prompt
+
+​	*translate this Appium call to UI Automator test code in Kotlin using By selector*
+
+* Original AppiumDriver API Call
+
+  ```shell
+  [AndroidUiautomator2Driver@5be1 (63a9e4f8)] Calling AppiumDriver.findElement() with args: ["xpath","//*[@text=\"Hello Android!\"]","63a9e4f8-125d-4822-8532-2a3136b4fb83"] 
+  ```
+
+* Translated UI Automator Test Code
+
+  ```kotlin
+  val uiDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation())
+  
+  // Using By.text to find an element by text
+  val element = uiDevice.findObject(By.text("Hello Android!"))
+  
+  // Perform actions on the found element
+  element.click()
+  ```
+
+* Results
+
+  The test can pass and it is code is equivalent.

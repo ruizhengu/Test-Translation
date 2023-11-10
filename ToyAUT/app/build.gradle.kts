@@ -65,4 +65,5 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
     androidTestImplementation("io.cucumber:cucumber-android:7.14.0")
+    androidTestImplementation("androidx.test.uiautomator:uiautomator:2.3.0-alpha03")
 }
