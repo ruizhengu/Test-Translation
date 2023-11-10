@@ -6,7 +6,6 @@ plugins {
 android {
     namespace = "com.example.toyaut"
     compileSdk = 33
-
     defaultConfig {
         applicationId = "com.example.toyaut"
         minSdk = 33
@@ -31,7 +30,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true

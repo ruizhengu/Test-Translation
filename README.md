@@ -50,3 +50,7 @@ el = self.driver.find_element(by=AppiumBy.ANDROID_UIAUTOMATOR, value="text(\"Bat
 
 * The driver (written in Node.js) ensures the communication between the Espresso server and Appium.
 * The server part (written in Kotlin and Java) is running on the device under test and **transforms REST API calls into low-level Espresso commands**.
+
+## Idea
+
+* No matter what kind of locator each action is using, we should always translate it by a strategy that can maximise the quality of test code (e.g. fewer test LOCs, lesser execution time).

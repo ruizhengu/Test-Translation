@@ -6,7 +6,7 @@ from appium.options.android import UiAutomator2Options
 capabilities = dict(
     platformName='Android',
     # automationName='uiautomator2',
-    automationName='Espresso',
+    automationName='espresso',
     deviceName='emulator-5554',
     appPackage='com.example.toyaut',
     # appPackage='com.android.settings',

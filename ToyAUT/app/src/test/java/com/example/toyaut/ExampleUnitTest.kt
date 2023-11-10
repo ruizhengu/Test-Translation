@@ -3,6 +3,7 @@ package com.example.toyaut
 import org.junit.Test
 
 import org.junit.Assert.*
+import org.openqa.selenium.remote.DesiredCapabilities
 
 /**
  * Example local unit test, which will execute on the development machine (host).
