@@ -1,0 +1,12 @@
+ShiftCal
+
+A FOSS Shift Calendar.
+
+Features:
+
+- Create your Shifts
+- Set an Alarm for the Shifts
+- Enable DoNotDisturb while Working
+- Select individual colors
+- View them in the calendar
+- Simple material design
