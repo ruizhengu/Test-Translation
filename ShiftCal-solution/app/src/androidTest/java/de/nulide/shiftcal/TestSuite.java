@@ -7,13 +7,13 @@ import static androidx.test.espresso.action.ViewActions.longClick;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
-import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
 
-import android.graphics.Point;
 import android.view.KeyEvent;
 
 import androidx.test.espresso.action.ViewActions;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.uiautomator.By;
 import androidx.test.uiautomator.UiDevice;
 import androidx.test.uiautomator.Until;
@@ -21,19 +21,19 @@ import androidx.test.uiautomator.Until;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
 
-@RunWith(JUnit4.class)
+@RunWith(AndroidJUnit4.class)
 public class TestSuite {
+    private UiDevice device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
 
     @Rule
-    public ActivityScenarioRule<CalendarActivity> activityScenarioRule = new ActivityScenarioRule<>(CalendarActivity.class);
+    public ActivityScenarioRule<CalendarActivity> activityRule =
+            new ActivityScenarioRule<>(CalendarActivity.class);
 
     /**
      * The application is a calendar for managing your employers and shifts.
      */
 
-    UiDevice device = UiDevice.getInstance(getInstrumentation());
 
     @Test
     public void setShifts() {

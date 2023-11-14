@@ -1,41 +1,32 @@
 package de.nulide.shiftcal
 
-import android.content.Context
-import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.pressKey
 import androidx.test.espresso.action.ViewActions.typeText
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
+import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.uiautomator.UiDevice
 import androidx.test.uiautomator.UiSelector
-import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 
+
 @RunWith(JUnit4::class)
 
 class TranslatedTest {
-    private val PACKAGE = "de.nulide.shiftcal"
-    private val uiDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation())
+    private var uiDevice: UiDevice =
+        UiDevice.getInstance(InstrumentationRegistry.getInstrumentation())
 
-
-    @Before
-    fun startMainActivity() {
-        val context = ApplicationProvider.getApplicationContext<Context>()
-        val intent = context.packageManager.getLaunchIntentForPackage(
-            PACKAGE
-        )
-        context.startActivity(intent)
-    }
+    @get:Rule
+    val activityRule = ActivityScenarioRule(CalendarActivity::class.java)
 
     @Test
     fun testSetShifts() {
-//        val uiDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation())
-
         // 1. Click the menu icon in the top-right corner - Espresso
         onView(withId(R.id.btnPopup)).perform(click())
 
