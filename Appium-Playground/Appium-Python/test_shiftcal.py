@@ -3,7 +3,6 @@ import unittest
 from appium import webdriver
 from appium.options.android import UiAutomator2Options
 from appium.webdriver.common.appiumby import By, AppiumBy
-from appium.webdriver.common.touch_action import TouchAction
 import time
 
 
@@ -19,7 +18,6 @@ class TestShiftCal(unittest.TestCase):
         self.capabilities = UiAutomator2Options().load_capabilities(desired_caps)
         self.driver = webdriver.Remote('http://localhost:4723', options=self.capabilities)
         self.driver.implicitly_wait(5)  # manually added
-        self.actions = TouchAction(self.driver)  # manually added
 
     def tearDown(self) -> None:
         if self.driver:
@@ -80,6 +78,7 @@ class TestShiftCal(unittest.TestCase):
         self.driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR, value="description(\"30\")").click()
         # 20. Click the ✓ icon - Espresso
         self.driver.find_element(By.ID, 'de.nulide.shiftcal:id/fabEdit').click()
+        time.sleep(1)
         # 21. Click the Edit icon in the bottom-right corner of the homepage - UI Automator
         self.driver.find_element(By.ID, 'de.nulide.shiftcal:id/fabEdit').click()
         time.sleep(1)  # Sleep to wait for the button to appear
@@ -87,11 +86,11 @@ class TestShiftCal(unittest.TestCase):
         self.driver.find_element(By.ID, 'de.nulide.shiftcal:id/fabShiftSelector').click()
         # 23. Click "Delete" - UI Automator
         # self.driver.find_element(By.TEXT, 'Delete').click()
-        self.driver.find_element(by=AppiumBy.ANDROID_UIAUTOMATOR, value="text(\"Delete\")")
+        self.driver.find_element(by=AppiumBy.ANDROID_UIAUTOMATOR, value="text(\"Delete\")").click()
         time.sleep(1)  # Sleep to wait for the button to appear
         # 24. Click date 30 of January 2023 - UI Automator
         # self.driver.find_element(By.DESC, '30').click()
-        self.driver.find_element(by=AppiumBy.ANDROID_UIAUTOMATOR, value="description(\"30\")")
+        self.driver.find_element(by=AppiumBy.ANDROID_UIAUTOMATOR, value="description(\"30\")").click()
         # 25. Click the ✓ icon - UI Automator
         self.driver.find_element(By.ID, 'de.nulide.shiftcal:id/fabEdit').click()
         time.sleep(1)  # Sleep to wait for the button to disappear
@@ -100,18 +99,16 @@ class TestShiftCal(unittest.TestCase):
         time.sleep(1)  # Sleep to wait for the menu to appear
         # 27. Click "Shifts" - UI Automator
         # self.driver.find_element(By.TEXT, 'Shifts').click()
-        self.driver.find_element(by=AppiumBy.ANDROID_UIAUTOMATOR, value="text(\"Shifts\")")
+        self.driver.find_element(by=AppiumBy.ANDROID_UIAUTOMATOR, value="text(\"Shifts\")").click()
         time.sleep(1)  # Sleep to wait for the button to appear
         # 28. Long click "Weekday" - Espresso
         # self.driver.find_element(By.ID, 'de.nulide.shiftcal:id/textViewSName').click_and_hold().release()
-        # self.actions.long_press(self.driver.find_element(By.ID, 'de.nulide.shiftcal:id/textViewSName'))
-        # self.actions.perform()
-        self.driver.execute_script("gesture: longPress", ["elementId", self.driver.find_element(By.ID,
-                                                                                                'de.nulide.shiftcal:id/textViewSName').id,
-                                                          "pressure", 0.5, "duration", 800])
+        text_view = self.driver.find_element(By.ID, 'de.nulide.shiftcal:id/textViewSName')
+        self.driver.execute_script("mobile: longClickGesture",
+                                   {"x": text_view.location["x"], "y": text_view.location["y"], "duration": 1000})
         # 29. Click "Delete" - Espresso
         # self.driver.find_element(By.TEXT, 'Delete').click()
-        self.driver.find_element(by=AppiumBy.ANDROID_UIAUTOMATOR, value="text(\"Delete\")")
+        self.driver.find_element(by=AppiumBy.ANDROID_UIAUTOMATOR, value="text(\"Delete\")").click()
         # 30. Press back to return to the homepage - Espresso
         self.driver.press_keycode(4)  # Back key
         time.sleep(1)  # Sleep to wait for the button to appear
@@ -120,15 +117,16 @@ class TestShiftCal(unittest.TestCase):
         time.sleep(1)  # Sleep to wait for the menu to appear
         # 32. Click "Employers" - UI Automator
         # self.driver.find_element(By.TEXT, 'Employers').click()
-        self.driver.find_element(by=AppiumBy.ANDROID_UIAUTOMATOR, value="text(\"Employers\")")
+        self.driver.find_element(by=AppiumBy.ANDROID_UIAUTOMATOR, value="text(\"Employers\")").click()
         time.sleep(1)  # Sleep to wait for the button to appear
         # 33. Long click "Sheffield" - Espresso
         # self.driver.find_element(By.ID, 'de.nulide.shiftcal:id/textViewName').click_and_hold().release()
-        self.actions.long_press(self.driver.find_element(By.ID, 'de.nulide.shiftcal:id/textViewSName'))
-        self.actions.perform()
+        text_view = self.driver.find_element(By.ID, 'de.nulide.shiftcal:id/textViewName')
+        self.driver.execute_script("mobile: longClickGesture",
+                                   {"x": text_view.location["x"], "y": text_view.location["y"], "duration": 1000})
         # 34. Click "Delete" - UI Automator
         # self.driver.find_element(By.TEXT, 'Delete').click()
-        self.driver.find_element(by=AppiumBy.ANDROID_UIAUTOMATOR, value="text(\"Delete\")")
+        self.driver.find_element(by=AppiumBy.ANDROID_UIAUTOMATOR, value="text(\"Delete\")").click()
         time.sleep(1)  # Sleep to wait for the button to disappear
         # 35. Press back to return to the homepage - UI Automator
         self.driver.press_keycode(4)  # Back key
