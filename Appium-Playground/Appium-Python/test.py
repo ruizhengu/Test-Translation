@@ -30,8 +30,8 @@ class TestAppium(unittest.TestCase):
             self.driver.quit()
 
     def test_find_battery(self) -> None:
-        el = self.driver.find_element(by=AppiumBy.XPATH, value='//*[@text="Hello Android!"]')
-        # el = self.driver.find_element(by=AppiumBy.ANDROID_UIAUTOMATOR, value="text(\"Hello Android\")")
+        # el = self.driver.find_element(by=AppiumBy.XPATH, value='//*[@text="Hello Android!"]')
+        el = self.driver.find_element(by=AppiumBy.ANDROID_UIAUTOMATOR, value="text(\"Hello Android!\")")
         # el = self.driver.find_element(by=AppiumBy.ANDROID_VIEW_MATCHER, value="text(\"Hello Android!\")")
         el.click()
 
