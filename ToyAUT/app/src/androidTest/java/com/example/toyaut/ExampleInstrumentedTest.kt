@@ -43,10 +43,9 @@ class ExampleInstrumentedTest {
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         assertEquals("com.example.toyaut", appContext.packageName)
 
-//        val element = uiDevice.findObject(UiSelector().textContains("Hello Android!"))
         val element = uiDevice.findObject(By.text("Hello Android!"))
         element.click()
 //        onView(withText("Hello Android!")).perform(click())
-    }
+    }`
 }
 
