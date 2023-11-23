@@ -4,6 +4,10 @@ from appium import webdriver
 from appium.options.android import UiAutomator2Options
 from appium.webdriver.common.appiumby import By, AppiumBy
 import time
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.actions import interaction
+from selenium.webdriver.common.actions.action_builder import ActionBuilder
+from selenium.webdriver.common.actions.pointer_input import PointerInput
 
 
 class TestShiftCal(unittest.TestCase):
@@ -104,8 +108,9 @@ class TestShiftCal(unittest.TestCase):
         # 28. Long click "Weekday" - Espresso
         # self.driver.find_element(By.ID, 'de.nulide.shiftcal:id/textViewSName').click_and_hold().release()
         text_view = self.driver.find_element(By.ID, 'de.nulide.shiftcal:id/textViewSName')
-        self.driver.execute_script("mobile: longClickGesture",
-                                   {"x": text_view.location["x"], "y": text_view.location["y"], "duration": 1000})
+        # self.driver.execute_script("mobile: longClickGesture",
+        #                            {"x": text_view.location["x"], "y": text_view.location["y"], "duration": 1000})
+        self.long_click(text_view)
         # 29. Click "Delete" - Espresso
         # self.driver.find_element(By.TEXT, 'Delete').click()
         self.driver.find_element(by=AppiumBy.ANDROID_UIAUTOMATOR, value="text(\"Delete\")").click()
@@ -122,8 +127,9 @@ class TestShiftCal(unittest.TestCase):
         # 33. Long click "Sheffield" - Espresso
         # self.driver.find_element(By.ID, 'de.nulide.shiftcal:id/textViewName').click_and_hold().release()
         text_view = self.driver.find_element(By.ID, 'de.nulide.shiftcal:id/textViewName')
-        self.driver.execute_script("mobile: longClickGesture",
-                                   {"x": text_view.location["x"], "y": text_view.location["y"], "duration": 1000})
+        # self.driver.execute_script("mobile: longClickGesture",
+        #                            {"x": text_view.location["x"], "y": text_view.location["y"], "duration": 1000})
+        self.long_click(text_view)
         # 34. Click "Delete" - UI Automator
         # self.driver.find_element(By.TEXT, 'Delete').click()
         self.driver.find_element(by=AppiumBy.ANDROID_UIAUTOMATOR, value="text(\"Delete\")").click()
@@ -131,8 +137,18 @@ class TestShiftCal(unittest.TestCase):
         # 35. Press back to return to the homepage - UI Automator
         self.driver.press_keycode(4)  # Back key
 
-    # def long_click(self):
-    #     action = ActionChains()
+    def long_click(self, element):
+        actions = ActionChains(self.driver)
+        x = element.location["x"]
+        y = element.location["y"]
+        touch_input = PointerInput(interaction.POINTER_TOUCH, 'touch')
+        actions.w3c_actions = ActionBuilder(self.driver, mouse=touch_input)
+        actions.w3c_actions.pointer_action.move_to_location(x, y)
+        actions.w3c_actions.pointer_action.pointer_down()
+        actions.w3c_actions = ActionBuilder(self.driver, mouse=touch_input, duration=1000)
+        actions.w3c_actions.pointer_action.move_to_location(x, y)
+        actions.w3c_actions.pointer_action.release()
+        actions.perform()
 
 
 if __name__ == '__main__':
