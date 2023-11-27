@@ -46,6 +46,6 @@ class ExampleInstrumentedTest {
         val element = uiDevice.findObject(By.text("Hello Android!"))
         element.click()
 //        onView(withText("Hello Android!")).perform(click())
-    }`
+    }
 }
 

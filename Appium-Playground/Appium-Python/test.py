@@ -37,8 +37,8 @@ class TestAppium(unittest.TestCase):
         # el = self.driver.find_element(by=AppiumBy.XPATH, value='//*[@text="Hello Android!"]')
         el = self.driver.find_element(by=AppiumBy.ANDROID_UIAUTOMATOR, value="text(\"Hello Android!\")")
         # el = self.driver.find_element(by=AppiumBy.ANDROID_VIEW_MATCHER, value="text(\"Hello Android!\")")
-        # el.send_keys()
-        self.long_click(el)
+        el.click()
+        # self.long_click(el)
 
     def long_click(self, element):
         actions = ActionChains(self.driver)
@@ -52,6 +52,7 @@ class TestAppium(unittest.TestCase):
         actions.w3c_actions.pointer_action.move_to_location(x, y)
         actions.w3c_actions.pointer_action.release()
         actions.perform()
+        return self.driver
 
 
 if __name__ == '__main__':
