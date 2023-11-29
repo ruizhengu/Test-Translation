@@ -1,6 +1,10 @@
 # Translation
 
-![translation_procedure](../doc/translation_procedure.png)
+### Direct API Mapping
+
+![translation_procedure](../doc/translation-procedure.png)
+
+### Translation with Guided LLM
 
 
 

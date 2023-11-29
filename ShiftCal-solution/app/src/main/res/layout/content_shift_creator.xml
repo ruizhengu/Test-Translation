@@ -9,6 +9,7 @@
     tools:showIn="@layout/activity_shift_creator">
 
     <androidx.gridlayout.widget.GridLayout
+        android:id="@+id/shift_creator_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="5mm"
